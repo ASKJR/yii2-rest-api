@@ -50,4 +50,18 @@ class Post extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+
+    public function fields() 
+    {
+        return [
+            'id',
+            'author',
+            'title',
+            'body',
+            'created_at' => function(Post $model) {
+                $dtime = new \DateTime($model->created_at);
+                return $dtime->format('d/m/Y H:i');
+            }
+        ];
+    }
 }

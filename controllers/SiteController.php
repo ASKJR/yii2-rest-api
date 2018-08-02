@@ -9,7 +9,6 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
 class SiteController extends Controller
 {
     /**
@@ -124,5 +123,37 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionFeed()
+    {
+        $api = new \RestClient([
+            'base_url' => 'http://yii2-api.com/api',
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        
+        ]);
+
+        //CREATE
+        // $api->post('post/create',[
+        //     'author' => 'JK',
+        //     'title' => 'NEWS',
+        //     'body' => 'Brazil won the WW'
+        // ]);
+        //UPDATE 
+        // $api->put('post/123',[
+        //     'author' => 'CJ'
+        // ]);
+        //DELETE
+        //$api->delete('post/123');
+        
+        $result = $api->get('/post');
+        
+        $data = json_decode($result->response,true);
+        
+        return $this->render('feed',[
+            'data' => $data
+        ]);
     }
 }
