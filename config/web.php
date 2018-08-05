@@ -50,7 +50,11 @@ $config = [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule',
                 'pluralize' => false,
-                'controller' => 'api/post']
+                'controller' => 'api/post'],
+
+                ['class' => 'yii\rest\UrlRule',
+                'pluralize' => false,
+                'controller' => 'api/author']
             ],
         ],
         

@@ -51,11 +51,18 @@ class Post extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getWriter()
+    {
+        return $this->hasOne(Author::className(), ['id' => 'author']);
+    }
+
     public function fields() 
     {
         return [
             'id',
-            'author',
+            'author' => function(Post $model) {
+                return $model->writer->name;
+            },
             'title',
             'body',
             'created_at' => function(Post $model) {

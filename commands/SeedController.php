@@ -9,7 +9,8 @@ namespace app\commands;
 
 use yii\console\Controller;
 use yii\console\ExitCode;
-use app\models\Post;
+//use app\models\Post;
+use app\models\Author;
 /**
  * This command echoes the first argument that you have entered.
  *
@@ -29,15 +30,24 @@ class SeedController extends Controller
     {
         $faker = \Faker\Factory::create();
 
-       
+        
+        //Posts       
 
-        for ( $i = 1; $i <= 100; $i++ ) {
-            $post = new Post();
-            $post->setIsNewRecord(true);
-            $post->author = $faker->name;
-            $post->title = $faker->sentence(6,true);
-            $post->body = $faker->realText(500);
-            $post->save();
+        // for ( $i = 1; $i <= 100; $i++ ) {
+        //     $post = new Post();
+        //     $post->setIsNewRecord(true);
+        //     $post->author = $faker->name;
+        //     $post->title = $faker->sentence(6,true);
+        //     $post->body = $faker->realText(500);
+        //     $post->save();
+        // }
+        
+        //Authors
+        for ($i = 0; $i < 100 ; $i++) {
+            $author = new Author();
+            $author->setIsNewRecord(true);
+            $author->name = $faker->name;
+            $author->save();
         }
     }
 }
